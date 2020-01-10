@@ -51,8 +51,19 @@ var employees = [
 */
 
 //Code Here
+function employeeUpdater() {
+  employees.forEach((employee) => {
+    if (employee.firstName === "Theo") {
+      employees.splice(employees.indexOf(employee), 1)
+    } else if (employee.firstName === "Lorie") {
+      employee.department = "HR";
+    }
+  })
 
+  return employees;
+}
 
+employeeUpdater(employees)
 
 ////////// PROBLEM 2 //////////
 
@@ -69,9 +80,14 @@ var workplaceAccidents = [12, 56, 44, 3, 29, 56, 56, 3, 7, 12];
 */
 
 //Code Here
+function removeDuplicates(workAcc) {
+  return workAcc.reduce((acc, curr) => {
+    acc.length === 0 || !acc.includes(curr) ? acc.push(curr) : null;
+    return acc;
+  }, []);
+}
 
-
-
+removeDuplicates(workplaceAccidents);
 ////////// PROBLEM 3 //////////
 
 // Do not edit the code below.
@@ -97,10 +113,8 @@ var cat = {
 */
 
 //Code Here
-var grumpyActivity;
-var fluffy2ndFriend;
-
-
+var grumpyActivity = cat.catFriends[0].activities[1];
+var fluffy2ndFriend = cat.catFriends[1].name;
 
 ////////// PROBLEM 4 //////////
 
@@ -139,8 +153,11 @@ var myCar = {
 */
 
 //Code Here
+function recordCleaner() {
+  return myCar.accidents.forEach((accident) => accident.atFaultForAccident = false);
+}
 
-
+recordCleaner(myCar);
 
 ////////// PROBLEM 5 //////////
 
@@ -160,3 +177,38 @@ var numsArr = [ [1, 2, 3, 4], [5, 6], [7, 8, 9, 10, 11]];
 //Code Here
 
 
+// function loop(numArrs) {
+//   let result = [];
+
+//   function helper(items) {
+//     items.forEach((item, i) => {
+//       if (Array.isArray(item)) {
+//         helper(item)
+//       } else if (item % 2 === 0) {
+//         result.push("even")
+//       } else {
+//         result.push("odd");
+//       }
+//     })
+//   }
+  
+//   helper(numArrs);
+//   return result;
+// }
+
+function looper() {
+  let result = numsArr;
+
+  for(let i = 0; i <= result.length - 1; i++) {
+    if (Array.isArray(result[i])) {
+      for (let j = 0; j <= result[i].length - 1; j++) {
+        if (result[i][j] % 2 === 0) {
+          result[i][j] = "even";
+        } else {
+          result[i][j] = "odd";
+        }
+      }
+    }
+  }
+  return result;
+}
